@@ -67,16 +67,16 @@ module.exports = {
             if(data.error){
                 // ganti dengan redirect ke url tertentu res.redirect
                 // res.status(data.error).json({errors: [data.msg]})
-                res.redirect(`https://myairfare.vercel.app/verif-failed`)
+                res.redirect(`https://binar-finalproj-frontend-client.vercel.app/verif-failed`)
             }else{
                 // ganti dengan redirect ke url tertentu res.redirect
                 // res.status(200).json(data)
-                res.redirect(`https://myairfare.vercel.app/verif`)
+                res.redirect(`https://binar-finalproj-frontend-client.vercel.app/verif`)
             }
         }).catch(err => {
             // ganti dengan redirect ke url tertentu res.redirect
             // res.status(400).json({errors: [err]})
-            res.redirect(`https://myairfare.vercel.app/verif-failed`)
+            res.redirect(`https://binar-finalproj-frontend-client.vercel.app/verif-failed`)
         })
     },
     verifyForgotPass(req, res){
@@ -84,16 +84,16 @@ module.exports = {
             if(data.error){
                 // ganti dengan redirect ke url tertentu res.redirect
                 // res.status(data.error).json({errors: [data.msg]})
-                res.redirect(`https://myairfare.vercel.app/verif-failed`)
+                res.redirect(`https://binar-finalproj-frontend-client.vercel.app/verif-failed`)
             }else{
                 // ganti dengan redirect ke url tertentu res.redirect
                 // res.status(200).json(data)
-                res.redirect(`https://myairfare.vercel.app/`)
+                res.redirect(`https://binar-finalproj-frontend-client.vercel.app/`)
             }
         }).catch(err => {
             // ganti dengan redirect ke url tertentu res.redirect
             // res.status(400).json({errors: [err]})
-            res.redirect(`https://myairfare.vercel.app/verif-failed`)
+            res.redirect(`https://binar-finalproj-frontend-client.vercel.app/verif-failed`)
         })
     },
     forgotPassword(req, res){
