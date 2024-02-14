@@ -1,47 +1,60 @@
-/**
- * @file Manages database connection configuration.
- * @author BINAR_C7
- */
-
-const dotenv = require('dotenv')
+// config/database.js
+import { Sequelize } from 'sequelize';
+import * as pg from 'pg';
+import dotenv from 'dotenv';
 
 dotenv.config();
 
-/** Destruct environment variable to get database configuration */
 const {
-  DB_USERNAME = process.env.DB_USERNAME,
-  DB_PASSWORD = process.env.DB_PASSWORD,
-  DB_HOST = process.env.DB_HOST,
-  DB_NAME = process.env.DB_NAME,
-  DB_PORT = process.env.DB_PORT
+  POSTGRES_USER,
+  POSTGRES_PASSWORD,
+  POSTGRES_HOST,
+  POSTGRES_DATABASE,
+  POSTGRES_URL
 } = process.env;
+
+const sequelize = new Sequelize(POSTGRES_URL || {
+  dialect: 'postgres',
+  dialectModule: pg,
+  host: POSTGRES_HOST,
+  database: POSTGRES_DATABASE,
+  username: POSTGRES_USER,
+  password: POSTGRES_PASSWORD,
+  dialectOptions: {
+    ssl: {
+      require: true,
+      rejectUnauthorized: false
+    }
+  },
+  timezone: '+07:00'
+});
 
 module.exports = {
   development: {
-    username: DB_USERNAME,
-    password: DB_PASSWORD,
-    database: `${DB_NAME}`,
-    host: DB_HOST,
-    port: DB_PORT,
+    username: POSTGRES_USER,
+    password: POSTGRES_PASSWORD,
+    database: POSTGRES_DATABASE,
+    host: POSTGRES_HOST,
     dialect: "postgres",
     timezone: '+07:00',
   },
   test: {
-    username: DB_USERNAME,
-    password: DB_PASSWORD,
-    database: `${DB_NAME}`,
-    host: DB_HOST,
-    port: DB_PORT,
+    username: POSTGRES_USER,
+    password: POSTGRES_PASSWORD,
+    database: POSTGRES_DATABASE,
+    host: POSTGRES_HOST,
     dialect: "postgres",
     timezone: '+07:00',
   },
   production: {
-    username: DB_USERNAME,
-    password: DB_PASSWORD,
-    database: `${DB_NAME}`,
-    host: DB_HOST,
-    port: DB_PORT,
+    username: POSTGRES_USER,
+    password: POSTGRES_PASSWORD,
+    database: POSTGRES_DATABASE,
+    host: POSTGRES_HOST,
     dialect: "postgres",
     timezone: '+07:00',
   },
 };
+
+export { sequelize, Sequelize };
+export default sequelize;
